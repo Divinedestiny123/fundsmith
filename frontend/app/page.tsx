@@ -165,7 +165,7 @@ export default function Home() {
 
         {/* Right Column: App Card */}
         <div className="flex-1 w-full max-w-lg lg:max-w-none lg:w-[500px] shrink-0">
-          <div className="glass rounded-3xl p-8 shadow-2xl relative overflow-hidden group">
+          <div className="glass rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-monad-DEFAULT/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             <div className="mb-8">
@@ -184,7 +184,7 @@ export default function Home() {
                 <p className="text-slate-400 text-sm mb-6 md:mb-8 max-w-[280px] mx-auto leading-relaxed">Please connect your Web3 wallet using the button at the top right to start batching transactions.</p>
               </div>
             ) : (
-              <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="flex flex-col gap-2.5">
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium text-slate-300">Recipients</label>
@@ -194,7 +194,7 @@ export default function Home() {
                     value={addressesText}
                     onChange={(e) => setAddressesText(e.target.value)}
                     placeholder="0x123...&#10;0xabc..."
-                    className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-4 text-sm font-mono focus:outline-none focus:border-monad-DEFAULT focus:ring-1 focus:ring-monad-DEFAULT transition-all min-h-[140px] resize-none text-slate-300 placeholder:text-slate-700 custom-scrollbar shadow-inner"
+                    className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-4 text-sm font-mono focus:outline-none focus:border-monad-DEFAULT focus:ring-1 focus:ring-monad-DEFAULT transition-all min-h-[90px] h-[90px] resize-none text-slate-300 placeholder:text-slate-700 custom-scrollbar shadow-inner"
                   />
                 </div>
 

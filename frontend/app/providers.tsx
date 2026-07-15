@@ -6,6 +6,12 @@ import {
   getDefaultConfig,
   darkTheme,
 } from "@rainbow-me/rainbowkit";
+import {
+  metaMaskWallet,
+  walletConnectWallet,
+  rainbowWallet,
+  coinbaseWallet
+} from "@rainbow-me/rainbowkit/wallets";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { type Chain } from "viem";
@@ -29,6 +35,12 @@ const config = getDefaultConfig({
   appName: "Fundsmith",
   projectId: "72c9730ad5410a3c7f3a5e2de55e7b86",
   chains: [monadTestnet],
+  wallets: [
+    {
+      groupName: 'Recommended',
+      wallets: [metaMaskWallet, walletConnectWallet, rainbowWallet, coinbaseWallet],
+    },
+  ],
   ssr: true,
 });
 
