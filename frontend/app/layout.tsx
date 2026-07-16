@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fundsmith | Monad",
     description: "Batch fund Monad wallets efficiently",
-    url: "https://fundsmith.vercel.app", // Adjust if your domain is different
+    url: "https://fundsmith.vercel.app",
     siteName: "Fundsmith",
     images: [
       {
-        url: "/og-image.png", // This points to public/og-image.png
+        url: "https://fundsmith.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "Fundsmith - Batch fund Monad wallets efficiently",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fundsmith | Monad",
     description: "Batch fund Monad wallets efficiently",
-    images: ["/og-image.png"],
+    images: ["https://fundsmith.vercel.app/og-image.png"],
   },
 };
 
