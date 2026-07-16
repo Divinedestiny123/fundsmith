@@ -6,11 +6,11 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fundsmith | Monad",
-  description: "Batch fund Monad wallets efficiently",
+  title: "Fundsmith | Batch Fund Monad Testnet Wallets with Precision",
+  description: "Fundsmith is the most efficient tool to batch distribute $MON tokens to multiple testnet wallets simultaneously on the Monad network. Built for Web3 builders.",
   openGraph: {
-    title: "Fundsmith | Monad",
-    description: "Batch fund Monad wallets efficiently",
+    title: "Fundsmith | Batch Fund Monad Testnet Wallets with Precision",
+    description: "Fundsmith is the most efficient tool to batch distribute $MON tokens to multiple testnet wallets on the Monad network.",
     url: "https://fundsmith.vercel.app",
     siteName: "Fundsmith",
     images: [
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fundsmith | Monad",
-    description: "Batch fund Monad wallets efficiently",
+    title: "Fundsmith | Batch Fund Monad Testnet Wallets with Precision",
+    description: "Fundsmith is the most efficient tool to batch distribute $MON tokens to multiple testnet wallets on the Monad network.",
     images: ["https://fundsmith.vercel.app/og-image.png"],
   },
 };
