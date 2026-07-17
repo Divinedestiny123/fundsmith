@@ -17,6 +17,27 @@ import { WagmiProvider } from "wagmi";
 import { type Chain } from "viem";
 import "@rainbow-me/rainbowkit/styles.css";
 
+type RainbowKitChain = Chain & {
+  iconUrl?: string;
+  iconBackground?: string;
+};
+
+const monadMainnet: RainbowKitChain = {
+  id: 143,
+  name: "Monad Mainnet",
+  nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
+  rpcUrls: {
+    default: { http: ["https://rpc.monad.xyz/"] },
+    public: { http: ["https://rpc.monad.xyz/"] },
+  },
+  blockExplorers: {
+    default: { name: "Monad Explorer", url: "https://monadexplorer.com/" },
+  },
+  iconUrl: "https://raw.githubusercontent.com/monad-foundation/monad-assets/main/monad-logo.png",
+  iconBackground: "#000000",
+  testnet: false,
+};
+
 const monadTestnet: Chain = {
   id: 10143,
   name: "Monad Testnet",
@@ -34,7 +55,7 @@ const monadTestnet: Chain = {
 const config = getDefaultConfig({
   appName: "Fundsmith",
   projectId: "72c9730ad5410a3c7f3a5e2de55e7b86",
-  chains: [monadTestnet],
+  chains: [monadMainnet, monadTestnet],
   wallets: [
     {
       groupName: 'Recommended',

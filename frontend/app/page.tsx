@@ -26,8 +26,8 @@ export default function Home() {
   const [status, setStatus] = useState<"idle" | "funding" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { address, isConnected } = useAccount();
-  const { data: balanceData } = useBalance({ address });
+  const { address, isConnected, chain } = useAccount();
+  const { data: balanceData } = useBalance({ address, chainId: chain?.id });
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
 
@@ -132,13 +132,13 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-monad-DEFAULT opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-monad-light"></span>
             </span>
-            Live on Monad Testnet
+            Live on {chain?.id === 143 ? "Monad Mainnet" : "Monad Testnet"}
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 md:mb-6 leading-[1.1]">
             Batch fund wallets with <span className="text-transparent bg-clip-text bg-gradient-to-r from-monad-light via-monad-DEFAULT to-pink-500">precision.</span>
           </h1>
           <p className="text-lg lg:text-xl text-slate-400 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Fundsmith is the most efficient way to distribute MON to multiple testnet addresses simultaneously. Designed for developers, hackers, and teams building on Monad.
+            Fundsmith is the most efficient way to distribute MON to multiple addresses simultaneously. Designed for developers, hackers, and teams building on Monad.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto lg:mx-0 text-left">
@@ -149,7 +149,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-white text-lg font-semibold mb-2">Time-Saving</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">Execute one transaction instead of dozens. Focus on building your dApp, not managing testnet funds.</p>
+              <p className="text-slate-400 text-sm leading-relaxed">Execute one transaction instead of dozens. Focus on building your dApp, not managing funds.</p>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/40 border border-white/5 backdrop-blur-sm transition-transform hover:-translate-y-1 hover:bg-slate-900/60 duration-300">
               <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-5 border border-blue-500/10">
@@ -228,9 +228,11 @@ export default function Home() {
                     </svg>
                     <span className="break-words leading-tight flex-1">
                       Insufficient balance. You need more MON to cover this transaction.{" "}
-                      <a href="https://testnet.monad.xyz/" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-amber-300 transition-colors">
-                        Get Testnet MON here.
-                      </a>
+                      {chain?.id !== 143 && (
+                        <a href="https://testnet.monad.xyz/" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-amber-300 transition-colors">
+                          Get Testnet MON here.
+                        </a>
+                      )}
                     </span>
                   </div>
                 )}
@@ -295,7 +297,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-6 text-sm text-slate-400">
             <a href="https://github.com/Divinedestiny123/fundsmith#readme" target="_blank" rel="noopener noreferrer" className="hover:text-monad-light transition-colors">Documentation</a>
             <a href="https://github.com/Divinedestiny123/fundsmith" target="_blank" rel="noopener noreferrer" className="hover:text-monad-light transition-colors">GitHub</a>
-            <a href="https://testnet.monad.xyz" target="_blank" rel="noopener noreferrer" className="hover:text-monad-light transition-colors">Monad Testnet</a>
+            <a href="https://monad.xyz" target="_blank" rel="noopener noreferrer" className="hover:text-monad-light transition-colors">Monad</a>
           </div>
         </div>
       </footer>
