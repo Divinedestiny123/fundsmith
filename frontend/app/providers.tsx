@@ -13,7 +13,7 @@ import {
   coinbaseWallet
 } from "@rainbow-me/rainbowkit/wallets";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider } from "wagmi";
+import { WagmiProvider, State } from "wagmi";
 import { type Chain } from "viem";
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -52,7 +52,7 @@ const monadTestnet: Chain = {
   testnet: true,
 };
 
-const config = getDefaultConfig({
+export const config = getDefaultConfig({
   appName: "Fundsmith",
   projectId: "72c9730ad5410a3c7f3a5e2de55e7b86",
   chains: [monadMainnet, monadTestnet],
@@ -67,9 +67,9 @@ const config = getDefaultConfig({
 
 const queryClient = new QueryClient();
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children, initialState }: { children: React.ReactNode, initialState?: State }) {
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={config} initialState={initialState}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           theme={darkTheme({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, usePublicClient, useWalletClient, useBalance } from "wagmi";
 import { parseEther, isAddress } from "viem";
@@ -25,11 +25,20 @@ export default function Home() {
   const [amount, setAmount] = useState("");
   const [status, setStatus] = useState<"idle" | "funding" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [txHash, setTxHash] = useState("");
 
   const { address, isConnected, chain } = useAccount();
-  const { data: balanceData } = useBalance({ address });
+  const { data: balanceData, refetch: refetchBalance } = useBalance({ address });
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
+
+  useEffect(() => {
+    if (!isConnected) {
+      setErrorMsg("");
+      setTxHash("");
+      setStatus("idle");
+    }
+  }, [isConnected]);
 
   // Clean and validate addresses
   const recipients = useMemo(() => {
@@ -61,6 +70,7 @@ export default function Home() {
 
     setStatus("funding");
     setErrorMsg("");
+    setTxHash("");
 
     try {
       const amountPerRecipient = parseEther(amount);
@@ -89,7 +99,9 @@ export default function Home() {
         account: address,
       });
 
+      setTxHash(hash);
       await publicClient.waitForTransactionReceipt({ hash });
+      await refetchBalance();
       setStatus("success");
     } catch (err: unknown) {
       const error = err as any;
@@ -238,20 +250,46 @@ export default function Home() {
                 )}
 
                 {errorMsg && (
-                  <div className="flex items-start gap-3 text-red-400 text-sm bg-red-500/10 border border-red-500/20 p-4 rounded-xl animate-in fade-in">
+                  <div className="flex items-start gap-3 text-red-400 text-sm bg-red-500/10 border border-red-500/20 p-4 rounded-xl animate-in fade-in relative pr-10">
                     <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="break-words leading-tight">{errorMsg}</span>
+                    <button 
+                      onClick={() => setErrorMsg("")} 
+                      className="absolute right-3 top-4 text-red-400/70 hover:text-red-400 transition-colors"
+                      aria-label="Dismiss error"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   </div>
                 )}
 
                 {status === "success" && (
-                  <div className="flex items-start gap-3 text-green-400 text-sm bg-green-500/10 border border-green-500/20 p-4 rounded-xl animate-in fade-in">
-                    <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="break-words leading-tight">Successfully funded {recipients.length} wallets!</span>
+                  <div className="flex items-start gap-3 text-green-400 text-sm bg-green-500/10 border border-green-500/20 p-4 rounded-xl animate-in fade-in flex-col">
+                    <div className="flex items-center gap-3">
+                      <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="break-words leading-tight font-medium">Successfully funded {recipients.length} wallets!</span>
+                    </div>
+                    {txHash && (
+                      <div className="ml-8 mt-1">
+                        <a 
+                          href={`${chain?.id === 143 ? "https://explorer.monad.xyz/tx/" : "https://testnet.monadexplorer.com/tx/"}${txHash}`}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs text-green-400/80 hover:text-green-300 transition-colors bg-green-500/10 px-2.5 py-1.5 rounded-lg border border-green-500/20"
+                        >
+                          View Transaction
+                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 )}
 
