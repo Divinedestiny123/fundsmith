@@ -27,7 +27,7 @@ export default function Home() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const { address, isConnected, chain } = useAccount();
-  const { data: balanceData } = useBalance({ address, chainId: chain?.id });
+  const { data: balanceData } = useBalance({ address });
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
 
@@ -229,7 +229,7 @@ export default function Home() {
                     <span className="break-words leading-tight flex-1">
                       Insufficient balance. You need more MON to cover this transaction.{" "}
                       {chain?.id !== 143 && (
-                        <a href="https://testnet.monad.xyz/" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-amber-300 transition-colors">
+                        <a href="https://faucet.monad.xyz/" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-amber-300 transition-colors">
                           Get Testnet MON here.
                         </a>
                       )}
