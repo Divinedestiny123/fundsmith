@@ -8,10 +8,10 @@ import { cookieToInitialState } from "wagmi";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fundsmith | Batch Fund Monad Testnet Wallets with Precision",
+  title: "Fundsmith | Batch Fund Monad Testnet and Mainnet Wallets with Precision",
   description: "Fundsmith is the most efficient tool to batch distribute $MON tokens to multiple testnet wallets simultaneously on the Monad network. Built for Web3 builders.",
   openGraph: {
-    title: "Fundsmith | Batch Fund Monad Testnet Wallets with Precision",
+    title: "Fundsmith | Batch Fund Monad Testnet and Mainnet Wallets with Precision",
     description: "Fundsmith is the most efficient tool to batch distribute $MON tokens to multiple testnet wallets on the Monad network.",
     url: "https://fundsmith.vercel.app",
     siteName: "Fundsmith",
