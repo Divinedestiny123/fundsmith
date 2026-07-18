@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fundsmith | Batch Fund Monad Testnet Wallets with Precision",
+    title: "Fundsmith | Batch Fund Monad Testnet and Mainnet Wallets with Precision",
     description: "Fundsmith is the most efficient tool to batch distribute $MON tokens to multiple testnet wallets on the Monad network.",
     images: ["https://fundsmith.vercel.app/og-image.png"],
   },
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialState = cookieToInitialState(config, headers().get("cookie"));
-  
+
   return (
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-slate-950 text-white min-h-screen`}>

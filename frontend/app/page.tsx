@@ -255,8 +255,8 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="break-words leading-tight">{errorMsg}</span>
-                    <button 
-                      onClick={() => setErrorMsg("")} 
+                    <button
+                      onClick={() => setErrorMsg("")}
                       className="absolute right-3 top-4 text-red-400/70 hover:text-red-400 transition-colors"
                       aria-label="Dismiss error"
                     >
@@ -277,9 +277,9 @@ export default function Home() {
                     </div>
                     {txHash && (
                       <div className="ml-8 mt-1">
-                        <a 
+                        <a
                           href={`${chain?.id === 143 ? "https://monadscan.com/tx/" : "https://testnet.monadscan.com/tx/"}${txHash}`}
-                          target="_blank" 
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs text-green-400/80 hover:text-green-300 transition-colors bg-green-500/10 px-2.5 py-1.5 rounded-lg border border-green-500/20"
                         >
