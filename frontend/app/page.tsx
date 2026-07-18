@@ -278,7 +278,7 @@ export default function Home() {
                     {txHash && (
                       <div className="ml-8 mt-1">
                         <a 
-                          href={`${chain?.id === 143 ? "https://explorer.monad.xyz/tx/" : "https://testnet.monadexplorer.com/tx/"}${txHash}`}
+                          href={`${chain?.id === 143 ? "https://monadscan.com/tx/" : "https://testnet.monadscan.com/tx/"}${txHash}`}
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs text-green-400/80 hover:text-green-300 transition-colors bg-green-500/10 px-2.5 py-1.5 rounded-lg border border-green-500/20"

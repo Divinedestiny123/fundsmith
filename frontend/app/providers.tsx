@@ -31,7 +31,7 @@ const monadMainnet: RainbowKitChain = {
     public: { http: ["https://rpc.monad.xyz/"] },
   },
   blockExplorers: {
-    default: { name: "Monad Explorer", url: "https://monadexplorer.com/" },
+    default: { name: "Monad Explorer", url: "https://monadscan.com/" },
   },
   iconUrl: "https://raw.githubusercontent.com/monad-foundation/monad-assets/main/monad-logo.png",
   iconBackground: "#000000",
@@ -47,7 +47,7 @@ const monadTestnet: Chain = {
     public: { http: ["https://testnet-rpc.monad.xyz/"] },
   },
   blockExplorers: {
-    default: { name: "Monad Explorer", url: "https://testnet.monadexplorer.com/" },
+    default: { name: "Monad Explorer", url: "https://testnet.monadscan.com/" },
   },
   testnet: true,
 };
